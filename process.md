@@ -66,6 +66,8 @@ reactなので拡張子は`.jsx`にしている
 
 `cacheDirectory`を有効化すると26%ビルド性能が向上するらしい[2]
 
+markdown-editorでは`HardSourceWebpackPlugin`で高速化しているが、`cacheDirectory`だけでも十分早い
+
 ## 自動ビルドに関して
 `webpack-dev-server`を使ってソースコードの変更を検知して自動的にビルドする
 ```
@@ -89,6 +91,18 @@ module.exports = {
 "scripts": {
   "start": "webpack-dev-server"
 },
+```
+
+# arrow functionについて
+上記設定ではarrow functionはビルド時にsyntax errorになってしまうので、`babel-plugin-transform-class-properties`パッケージを導入する
+```
+yarn add --dev transform-class-properties
+```
+.babelrcに以下を追記
+```
+"plugins": [
+    "transform-class-properties"
+  ]
 ```
 
 # 実行に関して
