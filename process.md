@@ -66,6 +66,30 @@ reactなので拡張子は`.jsx`にしている
 
 `cacheDirectory`を有効化すると26%ビルド性能が向上するらしい[2]
 
+## 自動ビルドに関して
+`webpack-dev-server`を使ってソースコードの変更を検知して自動的にビルドする
+```
+yarn add --dev webpack-dev-server html-webpack-plugin
+```
+続いてwebpack.config.jsに追記
+```
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+  // 中略
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+      filename: 'index.html'
+    })
+  ]
+}
+```
+`yarn start`で実行できるようにpackage.jsonに追記
+```
+"scripts": {
+  "start": "webpack-dev-server"
+},
+```
 
 # 実行に関して
 package.jsonに
