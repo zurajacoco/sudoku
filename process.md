@@ -63,6 +63,7 @@ module.exports = {
 };
 ```
 reactなので拡張子は`.jsx`にしている
+
 `cacheDirectory`を有効化すると26%ビルド性能が向上するらしい[2]
 
 
